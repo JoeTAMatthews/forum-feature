@@ -6,6 +6,7 @@ plugins {
 
 group = "com.joetymatthews.forum"
 version = "1.0-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_16
 
 repositories {
     mavenCentral()
@@ -26,9 +27,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+    implementation("com.devskiller.friendly-id:friendly-id:1.1.0")
 
-    compileOnly("org.projectlombok:lombok:1.18.8")
-    annotationProcessor("org.projectlombok:lombok:1.18.8")
+    compileOnly("org.projectlombok:lombok:1.18.26")
+    annotationProcessor("org.projectlombok:lombok:1.18.26")
+
+    testCompileOnly("org.projectlombok:lombok:1.18.26")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.26")
 
     testImplementation("org.mockito:mockito-inline:2.8.47")
     testImplementation("io.projectreactor:reactor-test")
@@ -36,6 +41,7 @@ dependencies {
     testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("junit:junit:4.13.1")
 }
 
 tasks.test {
