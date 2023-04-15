@@ -8,3 +8,4 @@ A forum built from scratch, in Java &amp; React
 
 * React
 * NextJS
+* Tailwind
