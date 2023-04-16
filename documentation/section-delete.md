@@ -1,21 +1,12 @@
-# POST Section
+# DEL Section
 
-Creates a section on the forum.
+Delete a section from the forum by the identifier.
 
-**URL**: `/section`
+**URL**: `/section/{id}`
 
-**Method**: `POST`
+**Method**: `DELETE`
 
 **Auth Required**: YES
-
-**Data constraints**
-
-```json
-{
-    "name": "[valid name]",
-    "order": "[valid number]"
-}
-```
 
 ## Success Response
 
@@ -35,18 +26,18 @@ Creates a section on the forum.
 
 ## Error Response
 
-**Condition**: If 'name' is the same as section already saved.
+**Condition**: If section not found by 'id'.
 
-**Code**: `302 FOUND`
+**Code**: `404 NOT FOUND`
 
 **Content**:
 
 ```json
 {
     "timestamp": "time",
-    "path": "/section",
-    "status": 302,
-    "error": "Found",
+    "path": "/section/{id}",
+    "status": 404,
+    "error": "Not Found",
     "message": "",
     "requestId": "id"
 }
