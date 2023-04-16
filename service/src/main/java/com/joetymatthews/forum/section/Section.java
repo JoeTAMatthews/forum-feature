@@ -15,6 +15,7 @@ public class Section {
     @Id
     private String id;
     private String name;
+    private int order;
 
     private long updated;
     private final long created;
@@ -27,11 +28,16 @@ public class Section {
         this.created = created;
     }
 
-    public Section(String name) {
+    public Section(String name, int order) {
         this.id = FriendlyId.createFriendlyId();
         this.name = name;
+        this.order = order;
         this.updated = System.currentTimeMillis();
         this.created = System.currentTimeMillis();
+    }
+
+    public Section(SectionDTO dto) {
+        this(dto.name(), dto.order());
     }
 
     public void updateName(String name) {
