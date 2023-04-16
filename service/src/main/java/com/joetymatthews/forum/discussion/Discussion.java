@@ -2,11 +2,13 @@ package com.joetymatthews.forum.discussion;
 
 import com.devskiller.friendly_id.FriendlyId;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@NoArgsConstructor
 @Document("discussions")
 public class Discussion {
 

@@ -1,7 +1,12 @@
 package com.joetymatthews.forum;
 
+import com.joetymatthews.forum.discussion.Discussion;
+import com.joetymatthews.forum.discussion.DiscussionDTO;
 import com.joetymatthews.forum.section.Section;
 import com.joetymatthews.forum.section.SectionDTO;
+import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -11,12 +16,37 @@ public class TestUtil {
         return new Section("hi", 0);
     }
 
+    public static Discussion createDiscussion() {
+        return new Discussion("1", "How are you?");
+    }
+
+    public static Flux<Discussion> createDiscussions() {
+        return Flux.just(new Discussion("1", "How are you?"), new Discussion("1", "Listen to them"));
+    }
+
     public static SectionDTO createSectionDTO() {
         return new SectionDTO("creator", 1);
+    }
+
+    public static DiscussionDTO createDiscussionDTO() {
+        return new DiscussionDTO("1", "How are you?");
     }
 
     public static void assertSection(Section section) {
         assertThat(section.getName()).isEqualTo("hi");
         assertThat(section.getOrder()).isEqualTo(0);
+    }
+
+    public static void assertDiscussion(Discussion discussion) {
+        assertThat(discussion.getTitle()).isEqualTo("How are you?");
+        assertThat(discussion.getSectionId()).isEqualTo("1");
+    }
+
+    public static void assertDiscussions(List<Discussion> discussionList) {
+        assertThat(discussionList.size()).isEqualTo(2);
+        assertThat(discussionList.get(0).getTitle()).isEqualTo("How are you?");
+        assertThat(discussionList.get(0).getSectionId()).isEqualTo("1");
+        assertThat(discussionList.get(1).getTitle()).isEqualTo("Listen to them");
+        assertThat(discussionList.get(1).getSectionId()).isEqualTo("1");
     }
 }
