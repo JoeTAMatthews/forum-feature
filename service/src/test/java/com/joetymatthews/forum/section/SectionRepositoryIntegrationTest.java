@@ -88,7 +88,7 @@ public class SectionRepositoryIntegrationTest {
     @Test
     public void findAll_shouldReturnTwo() {
         sectionRepository.save(section).block();
-        sectionRepository.save(new Section("terminal")).block();
+        sectionRepository.save(new Section("terminal", 1)).block();
 
         Flux<Section> returned = sectionRepository.findAll();
 
