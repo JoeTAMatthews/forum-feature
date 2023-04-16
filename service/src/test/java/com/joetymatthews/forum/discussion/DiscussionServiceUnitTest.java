@@ -62,7 +62,10 @@ public class DiscussionServiceUnitTest {
 
         StepVerifier.create(returned)
                 .assertNext(TestUtil::assertDiscussion)
-                .assertNext(TestUtil::assertDiscussion)
+                .assertNext(d -> {
+                    assertThat(d.getTitle()).isEqualTo("Listen to them");
+                    assertThat(d.getSectionId()).isEqualTo("1");
+                })
                 .verifyComplete();
     }
 

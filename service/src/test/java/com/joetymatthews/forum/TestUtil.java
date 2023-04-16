@@ -2,6 +2,8 @@ package com.joetymatthews.forum;
 
 import com.joetymatthews.forum.discussion.Discussion;
 import com.joetymatthews.forum.discussion.DiscussionDTO;
+import com.joetymatthews.forum.discussion.sub.SubDiscussion;
+import com.joetymatthews.forum.discussion.sub.SubDiscussionDTO;
 import com.joetymatthews.forum.section.Section;
 import com.joetymatthews.forum.section.SectionDTO;
 import reactor.core.publisher.Flux;
@@ -24,12 +26,20 @@ public class TestUtil {
         return Flux.just(new Discussion("1", "How are you?"), new Discussion("1", "Listen to them"));
     }
 
+    public static SubDiscussion createSubDiscussion() {
+        return new SubDiscussion("How are you?");
+    }
+
     public static SectionDTO createSectionDTO() {
         return new SectionDTO("creator", 1);
     }
 
     public static DiscussionDTO createDiscussionDTO() {
         return new DiscussionDTO("1", "How are you?");
+    }
+
+    public static SubDiscussionDTO createSubDiscussionDTO() {
+        return new SubDiscussionDTO("1", "How are you?");
     }
 
     public static void assertSection(Section section) {
@@ -48,5 +58,10 @@ public class TestUtil {
         assertThat(discussionList.get(0).getSectionId()).isEqualTo("1");
         assertThat(discussionList.get(1).getTitle()).isEqualTo("Listen to them");
         assertThat(discussionList.get(1).getSectionId()).isEqualTo("1");
+    }
+
+    public static void assertSubDiscussion(SubDiscussion subDiscussion) {
+        assertThat(subDiscussion.getTitle()).isEqualTo("How are you?");
+        assertThat(subDiscussion.getDiscussionId()).isEqualTo("1");
     }
 }

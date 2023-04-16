@@ -1,11 +1,18 @@
 package com.joetymatthews.forum.discussion;
 
 import com.devskiller.friendly_id.FriendlyId;
+import com.joetymatthews.forum.discussion.sub.SubDiscussion;
+import com.joetymatthews.forum.discussion.sub.SubDiscussionDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +24,8 @@ public class Discussion {
     private String sectionId;
     private String title;
 
+    private Map<String, SubDiscussion> subs;
+
     private long updated;
     private long created;
 
@@ -25,6 +34,7 @@ public class Discussion {
         this.id = id;
         this.sectionId = sectionId;
         this.title = title;
+        this.subs = new HashMap<>();
         this.updated = updated;
         this.created = created;
     }
@@ -37,4 +47,22 @@ public class Discussion {
         this(dto.sectionId(), dto.title());
     }
 
+    public Discussion addSub(SubDiscussionDTO dto) {
+        SubDiscussion sub = new SubDiscussion(dto);
+        subs.put(sub.getId(), sub);
+        return this;
+    }
+
+    public List<SubDiscussion> getSubs() {
+        return new ArrayList<>(subs.values());
+    }
+
+    public SubDiscussion getSub(String id) {
+        return subs.get(id);
+    }
+
+    public Discussion removeSub(String id) {
+        subs.remove(id);
+        return this;
+    }
 }

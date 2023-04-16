@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.joetymatthews.forum.ForumApplication;
 import com.joetymatthews.forum.TestUtil;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class DiscussionControllerIntegrationTest {
     private final DiscussionDTO dto = TestUtil.createDiscussionDTO();
     private final Discussion discussion = TestUtil.createDiscussion();
     private final Gson gson = new GsonBuilder().create();
+
+    @After
+    public void tearDown() {
+        discussionRepository.deleteAll().block();
+    }
 
     @Test
     public void postDiscussion_shouldReturnDiscussion() {
