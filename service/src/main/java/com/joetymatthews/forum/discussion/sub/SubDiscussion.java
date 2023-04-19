@@ -2,8 +2,10 @@ package com.joetymatthews.forum.discussion.sub;
 
 import com.devskiller.friendly_id.FriendlyId;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class SubDiscussion {
 
     private String id;

@@ -48,6 +48,10 @@ public class TestUtil {
         return new DiscussionDTO("1", "How are you?");
     }
 
+    public static SubDiscussionDTO createSubDiscussionDTO(Discussion discussion) {
+        return new SubDiscussionDTO(discussion.getId(), "How are you?");
+    }
+
     public static SubDiscussionDTO createSubDiscussionDTO() {
         return new SubDiscussionDTO("1", "How are you?");
     }
@@ -88,5 +92,10 @@ public class TestUtil {
         ServerHttpRequest request = mock(ServerHttpRequest.class);
         when(request.getURI()).thenReturn(URI.create("http://localhost:8080"));
         return request;
+    }
+
+    public static void assertSubDiscussions(List<SubDiscussion> subDiscussions) {
+        assertThat(subDiscussions.size()).isEqualTo(1);
+        assertThat(subDiscussions.get(0).getTitle()).isEqualTo("How are you?");
     }
 }

@@ -53,6 +53,11 @@ public class Discussion {
         return this;
     }
 
+    public Discussion addSub(SubDiscussion sub) {
+        subs.put(sub.getId(), sub);
+        return this;
+    }
+
     public List<SubDiscussion> getSubs() {
         return new ArrayList<>(subs.values());
     }
@@ -61,8 +66,16 @@ public class Discussion {
         return subs.get(id);
     }
 
+    public SubDiscussion getSubByTitle(String title) {
+        return subs.values().stream().filter(sub -> sub.getTitle().equals(title)).findFirst().orElse(null);
+    }
+
     public Discussion removeSub(String id) {
         subs.remove(id);
         return this;
+    }
+
+    public boolean existsSub(String id) {
+        return subs.containsKey(id);
     }
 }
