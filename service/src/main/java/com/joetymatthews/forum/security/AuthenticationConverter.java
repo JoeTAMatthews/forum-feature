@@ -1,6 +1,5 @@
 package com.joetymatthews.forum.security;
 
-import io.netty.util.internal.StringUtil;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,8 +16,8 @@ import java.util.stream.Collectors;
 
 public class AuthenticationConverter implements Converter<Jwt, Mono<AbstractAuthenticationToken>> {
 
-    private String SCOPE_AUTHORITY_PREFIX = "SCOPE_";
-    private List<String> WELL_KNOWN_SCOPE_ATTRIBUTE_NAME = List.of("scope", "scp", "authorities", "permissions");
+    private final String SCOPE_AUTHORITY_PREFIX = "SCOPE_";
+    private final List<String> WELL_KNOWN_SCOPE_ATTRIBUTE_NAME = List.of("scope", "scp", "authorities", "permissions");
 
     @Override
     public Mono<AbstractAuthenticationToken> convert(Jwt source) {
@@ -37,9 +36,6 @@ public class AuthenticationConverter implements Converter<Jwt, Mono<AbstractAuth
             if (scopes.getClass() == String.class) {
                 String str = (String) scopes;
                 if (StringUtils.hasText(str)) authorities.addAll(Arrays.asList(str.split(" ")));
-            } else if (scopes.getClass() == Collection.class) {
-                Collection<Object> list = (Collection<Object>) scopes;
-                list.stream().map(Object::toString).forEach(authorities::add);
             }
         }
 
