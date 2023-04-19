@@ -6,6 +6,7 @@ import com.joetymatthews.forum.discussion.sub.SubDiscussionControllerUnitTest;
 import com.joetymatthews.forum.discussion.sub.SubDiscussionServiceIntegrationTest;
 import com.joetymatthews.forum.discussion.sub.SubDiscussionServiceUnitTest;
 import com.joetymatthews.forum.section.*;
+import com.joetymatthews.forum.thread.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -27,5 +28,11 @@ import org.junit.runners.Suite;
         SubDiscussionServiceIntegrationTest.class,
         SubDiscussionControllerUnitTest.class,
         SubDiscussionControllerIntegrationTest.class
+
+        ThreadRepositoryIntegrationTest.class,
+        ThreadServiceUnitTest.class,
+        ThreadServiceIntegrationTest.class,
+        ThreadControllerUnitTest.class,
+        ThreadControllerIntegrationTest.class
 })
 public class ForumApplicationTestSuite {}
