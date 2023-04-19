@@ -24,3 +24,5 @@ hs_err_pid*
 
 .idea
 website/node_modules
+
+service/src/main/resources/application-dev.yml

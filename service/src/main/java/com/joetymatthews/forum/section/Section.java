@@ -2,8 +2,6 @@ package com.joetymatthews.forum.section;
 
 import com.devskiller.friendly_id.FriendlyId;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -37,11 +35,6 @@ public class Section {
     }
 
     public Section(SectionDTO dto) {
-        this(dto.name(), dto.order());
-    }
-
-    public void updateName(String name) {
-        this.name = name;
-        this.updated = System.currentTimeMillis();
+        this(dto.getName(), dto.getOrder());
     }
 }

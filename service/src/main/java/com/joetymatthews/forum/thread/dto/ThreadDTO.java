@@ -1,4 +1,4 @@
-package com.joetymatthews.forum.section;
+package com.joetymatthews.forum.thread.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SectionDTO {
+public class ThreadDTO {
 
-    private String name;
-    private int order;
+    private String title;
+    private String content;
 }

@@ -8,9 +8,13 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -18,6 +22,8 @@ import org.springframework.web.reactive.function.BodyInserters;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {ForumApplication.class})
 @AutoConfigureDataMongo
+@EnableAutoConfiguration(exclude = { ReactiveSecurityAutoConfiguration.class, ReactiveManagementWebSecurityAutoConfiguration.class })
+@ActiveProfiles(value = "test")
 public class SectionControllerIntegrationTest {
 
     @Autowired
@@ -71,7 +77,7 @@ public class SectionControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isNotFound()
                 .expectBody()
-                .jsonPath("$.message").isEmpty();
+                .jsonPath("$.message").isNotEmpty();
     }
 
     @Test
@@ -94,7 +100,7 @@ public class SectionControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isNotFound()
                 .expectBody()
-                .jsonPath("$.message").isEmpty();
+                .jsonPath("$.message").isNotEmpty();
     }
 
     @Test
@@ -130,7 +136,7 @@ public class SectionControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isNotFound()
                 .expectBody()
-                .jsonPath("$.message").isEmpty();
+                .jsonPath("$.message").isNotEmpty();
     }
 
     @Test
