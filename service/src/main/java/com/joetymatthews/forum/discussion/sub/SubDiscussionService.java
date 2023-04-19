@@ -20,10 +20,10 @@ public class SubDiscussionService {
     }
 
     public Mono<SubDiscussion> createSubDiscussion(SubDiscussionDTO dto) {
-        return discussionRepository.findById(dto.discussionId())
+        return discussionRepository.findById(dto.getDiscussionId())
                 .switchIfEmpty(Mono.error(DiscussionNotFound::new))
                 .flatMap(discussion -> discussionRepository.save(discussion.addSub(dto)))
-                .flatMap(discussion -> Mono.just(discussion.getSubByTitle(dto.title())));
+                .flatMap(discussion -> Mono.just(discussion.getSubByTitle(dto.getTitle())));
     }
 
     public Mono<SubDiscussion> getSubDiscussion(String discussion, String id) {

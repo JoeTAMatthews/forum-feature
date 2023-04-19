@@ -47,6 +47,6 @@ public class Thread {
     }
 
     public Thread(ThreadDTO dto, String userId) {
-        this(dto.title(), dto.content(), userId);
+        this(dto.getTitle(), dto.getContent(), userId);
     }
 }

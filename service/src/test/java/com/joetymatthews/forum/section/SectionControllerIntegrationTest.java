@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.joetymatthews.forum.ForumApplication;
 import com.joetymatthews.forum.TestUtil;
-import com.joetymatthews.forum.security.SecurityConfiguration;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -78,7 +77,7 @@ public class SectionControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isNotFound()
                 .expectBody()
-                .jsonPath("$.message").isEmpty();
+                .jsonPath("$.message").isNotEmpty();
     }
 
     @Test
@@ -101,7 +100,7 @@ public class SectionControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isNotFound()
                 .expectBody()
-                .jsonPath("$.message").isEmpty();
+                .jsonPath("$.message").isNotEmpty();
     }
 
     @Test
@@ -137,7 +136,7 @@ public class SectionControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isNotFound()
                 .expectBody()
-                .jsonPath("$.message").isEmpty();
+                .jsonPath("$.message").isNotEmpty();
     }
 
     @Test

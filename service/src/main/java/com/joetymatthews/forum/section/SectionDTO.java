@@ -1,4 +1,14 @@
 package com.joetymatthews.forum.section;
 
-public record SectionDTO(String name, int order) {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class SectionDTO {
+
+    private String name;
+    private int order;
 }

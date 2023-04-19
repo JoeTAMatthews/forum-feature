@@ -18,7 +18,7 @@ public class SectionService {
     }
 
     public Mono<Section> saveSection(SectionDTO dto) {
-        return sectionRepository.findByName(dto.name())
+        return sectionRepository.findByName(dto.getName())
                 .flatMap(section -> Mono.defer(() -> Mono.error(SectionAlreadyFound::new))).cast(Section.class)
                 .switchIfEmpty(Mono.defer(() -> this.sectionRepository.save(new Section(dto))));
     }

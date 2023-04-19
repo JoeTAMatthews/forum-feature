@@ -1,3 +1,14 @@
 package com.joetymatthews.forum.thread.dto;
 
-public record ThreadDTO(String title, String content) {}
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ThreadDTO {
+
+    private String title;
+    private String content;
+}

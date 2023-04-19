@@ -1,3 +1,14 @@
 package com.joetymatthews.forum.discussion.sub;
 
-public record SubDiscussionDTO(String discussionId, String title) {}
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class SubDiscussionDTO {
+
+    private String discussionId;
+    private String title;
+}

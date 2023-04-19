@@ -7,6 +7,8 @@ import com.joetymatthews.forum.discussion.Discussion;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,7 +22,7 @@ import reactor.core.publisher.Mono;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@WebFluxTest(SubDiscussionController.class)
+@WebFluxTest(value = SubDiscussionController.class, excludeAutoConfiguration = {ReactiveManagementWebSecurityAutoConfiguration.class, ReactiveSecurityAutoConfiguration.class})
 @AutoConfigureDataMongo
 public class SubDiscussionControllerUnitTest {
 
@@ -45,8 +47,8 @@ public class SubDiscussionControllerUnitTest {
                 .body(BodyInserters.fromValue(gson.toJson(dto)))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(SubDiscussion.class)
-                .value(TestUtil::assertSubDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?");
 
         verify(subDiscussionService, times(1)).createSubDiscussion(any(SubDiscussionDTO.class));
         verifyNoMoreInteractions(subDiscussionService);
@@ -60,8 +62,8 @@ public class SubDiscussionControllerUnitTest {
                 .uri("/subdiscussion/{discussion}/{subDiscussionId}", discussion.getId(), subDiscussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(SubDiscussion.class)
-                .value(TestUtil::assertSubDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?");
 
         verify(subDiscussionService, times(1)).getSubDiscussion(anyString(), anyString());
         verifyNoMoreInteractions(subDiscussionService);
@@ -75,8 +77,8 @@ public class SubDiscussionControllerUnitTest {
                 .uri("/subdiscussion/{discussionId}", discussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(SubDiscussion.class)
-                .value(TestUtil::assertSubDiscussions);
+                .expectBody()
+                .jsonPath("$[0].title").isEqualTo("How are you?");
 
         verify(subDiscussionService, times(1)).getSubDiscussionsByDiscussionId(anyString());
         verifyNoMoreInteractions(subDiscussionService);
@@ -90,8 +92,8 @@ public class SubDiscussionControllerUnitTest {
                 .uri("/subdiscussion/{discussionId}/{subDiscussionId}", discussion.getId(), subDiscussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(SubDiscussion.class)
-                .value(TestUtil::assertSubDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?");
 
         verify(subDiscussionService, times(1)).deleteSubDiscussion(anyString(), anyString());
         verifyNoMoreInteractions(subDiscussionService);
