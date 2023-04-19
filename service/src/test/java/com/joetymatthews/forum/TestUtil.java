@@ -110,4 +110,9 @@ public class TestUtil {
         when(request.getURI()).thenReturn(URI.create("http://localhost:8080"));
         return request;
     }
+
+    public static void assertSubDiscussions(List<SubDiscussion> subDiscussions) {
+        assertThat(subDiscussions.size()).isEqualTo(1);
+        assertThat(subDiscussions.get(0).getTitle()).isEqualTo("How are you?");
+    }
 }
