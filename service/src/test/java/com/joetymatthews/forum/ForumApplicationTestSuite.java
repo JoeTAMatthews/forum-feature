@@ -2,6 +2,7 @@ package com.joetymatthews.forum;
 
 import com.joetymatthews.forum.discussion.*;
 import com.joetymatthews.forum.section.*;
+import com.joetymatthews.forum.thread.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -18,5 +19,11 @@ import org.junit.runners.Suite;
         DiscussionServiceIntegrationTest.class,
         DiscussionControllerUnitTest.class,
         DiscussionControllerIntegrationTest.class,
+
+        ThreadRepositoryIntegrationTest.class,
+        ThreadServiceUnitTest.class,
+        ThreadServiceIntegrationTest.class,
+        ThreadControllerUnitTest.class,
+        ThreadControllerIntegrationTest.class
 })
 public class ForumApplicationTestSuite {}
