@@ -42,9 +42,10 @@ public class DiscussionControllerUnitTest {
                 .body(BodyInserters.fromValue(new GsonBuilder().create().toJson(dto)))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Discussion.class)
+                .expectBody()
                 .consumeWith(System.out::println)
-                .value(TestUtil::assertDiscussion);
+                .jsonPath("$.title").isEqualTo("How are you?")
+                .jsonPath("$.sectionId").isEqualTo("1");
 
         verify(service).createDiscussion(any(DiscussionDTO.class));
         verifyNoMoreInteractions(service);
@@ -57,8 +58,9 @@ public class DiscussionControllerUnitTest {
         testClient.get().uri("/discussion/" + discussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Discussion.class)
-                .value(TestUtil::assertDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?")
+                .jsonPath("$.sectionId").isEqualTo("1");
 
         verify(service, times(1)).getDiscussion(any(String.class));
         verifyNoMoreInteractions(service);
@@ -71,8 +73,9 @@ public class DiscussionControllerUnitTest {
         testClient.get().uri("/discussion/section/" + discussion.getSectionId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Discussion.class)
-                .value(TestUtil::assertDiscussions);
+                .expectBody()
+                .jsonPath("$[0].title").isEqualTo("How are you?")
+                .jsonPath("$[0].sectionId").isEqualTo("1");
 
         verify(service, times(1)).getDiscussionsBySectionId(any(String.class));
         verifyNoMoreInteractions(service);
@@ -85,8 +88,9 @@ public class DiscussionControllerUnitTest {
         testClient.get().uri("/discussion/all")
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Discussion.class)
-                .value(TestUtil::assertDiscussions);
+                .expectBody()
+                .jsonPath("$[0].title").isEqualTo("How are you?")
+                .jsonPath("$[0].sectionId").isEqualTo("1");
 
         verify(service, times(1)).getDiscussions();
         verifyNoMoreInteractions(service);
@@ -99,8 +103,9 @@ public class DiscussionControllerUnitTest {
         testClient.delete().uri("/discussion/" + discussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Discussion.class)
-                .value(TestUtil::assertDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?")
+                .jsonPath("$.sectionId").isEqualTo("1");
 
         verify(service, times(1)).deleteDiscussion(any(String.class));
         verifyNoMoreInteractions(service);

@@ -18,7 +18,7 @@ public class DiscussionService {
     }
 
     public Mono<Discussion> createDiscussion(DiscussionDTO dto) {
-        return discussionRepository.findBySectionIdAndTitle(dto.sectionId(), dto.title())
+        return discussionRepository.findBySectionIdAndTitle(dto.getSectionId(), dto.getTitle())
                 .flatMap(discussion -> Mono.error(new DiscussionAlreadyExists())).cast(Discussion.class)
                 .switchIfEmpty(discussionRepository.save(new Discussion(dto)));
     }

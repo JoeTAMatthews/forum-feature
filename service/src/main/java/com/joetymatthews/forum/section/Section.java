@@ -35,11 +35,6 @@ public class Section {
     }
 
     public Section(SectionDTO dto) {
-        this(dto.name(), dto.order());
-    }
-
-    public void updateName(String name) {
-        this.name = name;
-        this.updated = System.currentTimeMillis();
+        this(dto.getName(), dto.getOrder());
     }
 }

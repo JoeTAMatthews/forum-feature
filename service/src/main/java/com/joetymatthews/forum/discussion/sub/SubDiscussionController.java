@@ -1,7 +1,6 @@
 package com.joetymatthews.forum.discussion.sub;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,9 +26,9 @@ public class SubDiscussionController {
         return subDiscussionService.getSubDiscussion(discussion, id);
     }
 
-    @GetMapping("/{discussionId}")
-    public Flux<SubDiscussion> getSubDiscussionsByDiscussionId(@PathVariable String discussionId) {
-        return subDiscussionService.getSubDiscussionsByDiscussionId(discussionId);
+    @GetMapping("/{discussion}")
+    public Flux<SubDiscussion> getSubDiscussionsByDiscussionId(@PathVariable String discussion) {
+        return subDiscussionService.getSubDiscussionsByDiscussionId(discussion);
     }
 
     @DeleteMapping("/{discussion}/{id}")

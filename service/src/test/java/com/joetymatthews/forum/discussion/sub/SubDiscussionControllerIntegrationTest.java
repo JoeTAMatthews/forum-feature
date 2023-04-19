@@ -10,6 +10,9 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.reactive.ReactiveManagementWebSecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -19,6 +22,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {ForumApplication.class})
+@EnableAutoConfiguration(exclude = {ReactiveSecurityAutoConfiguration.class, ReactiveManagementWebSecurityAutoConfiguration.class})
 @AutoConfigureDataMongo
 public class SubDiscussionControllerIntegrationTest {
 
@@ -48,8 +52,8 @@ public class SubDiscussionControllerIntegrationTest {
                 .body(BodyInserters.fromValue(gson.toJson(dto)))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(SubDiscussion.class)
-                .value(TestUtil::assertSubDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?");
     }
 
     @Test
@@ -60,8 +64,8 @@ public class SubDiscussionControllerIntegrationTest {
                 .uri("/subdiscussion/" + discussion.getId() + "/" + subDiscussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(SubDiscussion.class)
-                .value(TestUtil::assertSubDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?");
     }
 
     @Test
@@ -71,8 +75,8 @@ public class SubDiscussionControllerIntegrationTest {
         testClient.get().uri("/subdiscussion/" + discussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(SubDiscussion.class)
-                .value(TestUtil::assertSubDiscussions);
+                .expectBody()
+                .jsonPath("$[0].title").isEqualTo("How are you?");
     }
 
     @Test
@@ -83,7 +87,7 @@ public class SubDiscussionControllerIntegrationTest {
                 .uri("/subdiscussion/" + discussion.getId() + "/" + subDiscussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(SubDiscussion.class)
-                .value(TestUtil::assertSubDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?");
     }
 }

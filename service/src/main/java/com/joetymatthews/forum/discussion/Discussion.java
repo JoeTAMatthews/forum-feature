@@ -44,7 +44,7 @@ public class Discussion {
     }
 
     public Discussion(DiscussionDTO dto) {
-        this(dto.sectionId(), dto.title());
+        this(dto.getSectionId(), dto.getTitle());
     }
 
     public Discussion addSub(SubDiscussionDTO dto) {

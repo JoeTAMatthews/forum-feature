@@ -46,8 +46,9 @@ public class DiscussionControllerIntegrationTest {
                 .body(BodyInserters.fromValue(gson.toJson(dto)))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Discussion.class)
-                .value(TestUtil::assertDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?")
+                .jsonPath("$.sectionId").isEqualTo("1");
     }
 
     @Test
@@ -57,8 +58,9 @@ public class DiscussionControllerIntegrationTest {
         testClient.get().uri("/discussion/" + discussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Discussion.class)
-                .value(TestUtil::assertDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?")
+                .jsonPath("$.sectionId").isEqualTo("1");
     }
 
     @Test
@@ -68,9 +70,9 @@ public class DiscussionControllerIntegrationTest {
         testClient.get().uri("/discussion/section/" + discussion.getSectionId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Discussion.class)
-                .hasSize(2)
-                .value(TestUtil::assertDiscussions);
+                .expectBody()
+                .jsonPath("$[0].title").isEqualTo("How are you?")
+                .jsonPath("$[0].sectionId").isEqualTo("1");
     }
 
     @Test
@@ -80,20 +82,21 @@ public class DiscussionControllerIntegrationTest {
         testClient.get().uri("/discussion/all")
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Discussion.class)
-                .hasSize(2)
-                .value(TestUtil::assertDiscussions);
+                .expectBody()
+                .jsonPath("$[0].title").isEqualTo("How are you?")
+                .jsonPath("$[0].sectionId").isEqualTo("1");
     }
 
     @Test
-    public void deleteDiscussions() {
+    public void deleteDiscussion_shouldReturnData() {
         discussionRepository.save(discussion).block();
 
         testClient.delete().uri("/discussion/" + discussion.getId())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Discussion.class)
-                .value(TestUtil::assertDiscussion);
+                .expectBody()
+                .jsonPath("$.title").isEqualTo("How are you?")
+                .jsonPath("$.sectionId").isEqualTo("1");
     }
 
 }

@@ -50,8 +50,8 @@ public class ThreadControllerIntegrationTest {
                 .expectStatus().isOk()
                 .expectBody()
                 .consumeWith(System.out::println)
-                .jsonPath("$.title").isEqualTo(dto.title())
-                .jsonPath("$.content").isEqualTo(dto.content());
+                .jsonPath("$.title").isEqualTo(dto.getTitle())
+                .jsonPath("$.content").isEqualTo(dto.getContent());
     }
 
     @Test
@@ -72,8 +72,8 @@ public class ThreadControllerIntegrationTest {
                 .expectStatus().isOk()
                 .expectBody()
                 .consumeWith(System.out::println)
-                .jsonPath("$.title").isEqualTo(dto.title())
-                .jsonPath("$.content").isEqualTo(dto.content());
+                .jsonPath("$.title").isEqualTo(dto.getTitle())
+                .jsonPath("$.content").isEqualTo(dto.getContent());
     }
 
     @Test
@@ -86,8 +86,8 @@ public class ThreadControllerIntegrationTest {
                 .expectStatus().isOk()
                 .expectBody()
                 .consumeWith(System.out::println)
-                .jsonPath("$[0].title").isEqualTo(dto.title())
-                .jsonPath("$[0].content").isEqualTo(dto.content());
+                .jsonPath("$[0].title").isEqualTo(dto.getTitle())
+                .jsonPath("$[0].content").isEqualTo(dto.getContent());
     }
 
     @Test
@@ -100,8 +100,8 @@ public class ThreadControllerIntegrationTest {
                 .expectStatus().isOk()
                 .expectBody()
                 .consumeWith(System.out::println)
-                .jsonPath("$[0].title").isEqualTo(dto.title())
-                .jsonPath("$[0].content").isEqualTo(dto.content());
+                .jsonPath("$[0].title").isEqualTo(dto.getTitle())
+                .jsonPath("$[0].content").isEqualTo(dto.getContent());
     }
 
     @Test
@@ -121,7 +121,7 @@ public class ThreadControllerIntegrationTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
-                .jsonPath("$.title").isEqualTo(dto.title())
-                .jsonPath("$.content").isEqualTo(dto.content());
+                .jsonPath("$.title").isEqualTo(dto.getTitle())
+                .jsonPath("$.content").isEqualTo(dto.getContent());
     }
 }

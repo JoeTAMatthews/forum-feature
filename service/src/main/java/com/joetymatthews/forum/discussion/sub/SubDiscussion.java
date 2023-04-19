@@ -26,6 +26,6 @@ public class SubDiscussion {
     }
 
     public SubDiscussion(SubDiscussionDTO dto) {
-        this(dto.title());
+        this(dto.getTitle());
     }
 }
