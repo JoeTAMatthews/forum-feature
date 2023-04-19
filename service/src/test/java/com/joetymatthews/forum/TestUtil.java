@@ -38,6 +38,10 @@ public class TestUtil {
         return new DiscussionDTO("1", "How are you?");
     }
 
+    public static SubDiscussionDTO createSubDiscussionDTO(Discussion discussion) {
+        return new SubDiscussionDTO(discussion.getId(), "How are you?");
+    }
+
     public static SubDiscussionDTO createSubDiscussionDTO() {
         return new SubDiscussionDTO("1", "How are you?");
     }
@@ -62,6 +66,10 @@ public class TestUtil {
 
     public static void assertSubDiscussion(SubDiscussion subDiscussion) {
         assertThat(subDiscussion.getTitle()).isEqualTo("How are you?");
-        assertThat(subDiscussion.getDiscussionId()).isEqualTo("1");
+    }
+
+    public static void assertSubDiscussions(List<SubDiscussion> subDiscussions) {
+        assertThat(subDiscussions.size()).isEqualTo(1);
+        assertThat(subDiscussions.get(0).getTitle()).isEqualTo("How are you?");
     }
 }

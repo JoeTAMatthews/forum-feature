@@ -1,6 +1,10 @@
 package com.joetymatthews.forum;
 
 import com.joetymatthews.forum.discussion.*;
+import com.joetymatthews.forum.discussion.sub.SubDiscussionControllerIntegrationTest;
+import com.joetymatthews.forum.discussion.sub.SubDiscussionControllerUnitTest;
+import com.joetymatthews.forum.discussion.sub.SubDiscussionServiceIntegrationTest;
+import com.joetymatthews.forum.discussion.sub.SubDiscussionServiceUnitTest;
 import com.joetymatthews.forum.section.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -18,5 +22,10 @@ import org.junit.runners.Suite;
         DiscussionServiceIntegrationTest.class,
         DiscussionControllerUnitTest.class,
         DiscussionControllerIntegrationTest.class,
+
+        SubDiscussionServiceUnitTest.class,
+        SubDiscussionServiceIntegrationTest.class,
+        SubDiscussionControllerUnitTest.class,
+        SubDiscussionControllerIntegrationTest.class
 })
 public class ForumApplicationTestSuite {}
