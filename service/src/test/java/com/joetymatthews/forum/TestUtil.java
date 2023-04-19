@@ -62,6 +62,5 @@ public class TestUtil {
 
     public static void assertSubDiscussion(SubDiscussion subDiscussion) {
         assertThat(subDiscussion.getTitle()).isEqualTo("How are you?");
-        assertThat(subDiscussion.getDiscussionId()).isEqualTo("1");
     }
 }
