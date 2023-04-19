@@ -27,6 +27,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    implementation("org.springframework.security:spring-security-oauth2-client")
+
+    implementation("org.springframework.security:spring-security-oauth2-jose")
+    implementation("org.springframework.security:spring-security-oauth2-resource-server")
+
     implementation("com.devskiller.friendly-id:friendly-id:1.1.0")
     implementation("com.google.code.gson:gson:2.10.1")
 
