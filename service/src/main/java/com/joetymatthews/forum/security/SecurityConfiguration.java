@@ -14,7 +14,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
 @EnableWebFluxSecurity
-@Profile(value = "prod")
+@Profile(value = {"dev", "prod"})
 public class SecurityConfiguration {
 
     @Value("/${spring.security.oauth2.resourceserver.jwk.issuer-uri}")
@@ -25,21 +25,21 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity http) {
-        return http.cors()
+        http.httpBasic().disable()
+                .cors()
                 .and()
                 .csrf().disable()
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
 
 
-
                 .anyExchange().permitAll()
                 .and()
                 .oauth2ResourceServer()
                 .jwt()
-                .jwtAuthenticationConverter(new AuthenticationConverter())
-                .and()
-                .and().build();
+                .jwtAuthenticationConverter(new AuthenticationConverter());
+
+        return http.build();
     }
 
     @Bean
