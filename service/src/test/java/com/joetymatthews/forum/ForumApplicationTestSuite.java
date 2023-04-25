@@ -27,7 +27,7 @@ import org.junit.runners.Suite;
         SubDiscussionServiceUnitTest.class,
         SubDiscussionServiceIntegrationTest.class,
         SubDiscussionControllerUnitTest.class,
-        SubDiscussionControllerIntegrationTest.class
+        SubDiscussionControllerIntegrationTest.class,
 
         ThreadRepositoryIntegrationTest.class,
         ThreadServiceUnitTest.class,

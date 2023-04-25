@@ -32,7 +32,6 @@ public class SecurityConfiguration {
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
 
-
                 .anyExchange().permitAll()
                 .and()
                 .oauth2ResourceServer()

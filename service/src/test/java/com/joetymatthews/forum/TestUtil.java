@@ -81,12 +81,7 @@ public class TestUtil {
     public static void assertSubDiscussion(SubDiscussion subDiscussion) {
         assertThat(subDiscussion.getTitle()).isEqualTo("How are you?");
     }
-
-    public static void assertSubDiscussions(List<SubDiscussion> subDiscussions) {
-        assertThat(subDiscussions.size()).isEqualTo(1);
-        assertThat(subDiscussions.get(0).getTitle()).isEqualTo("How are you?");
-    }
-
+    
     public static void assertThread(Thread thread) {
         assertThat(thread.getTitle()).isEqualTo("Post!");
         assertThat(thread.getContent()).isEqualTo("<h1>Post</h1>");
