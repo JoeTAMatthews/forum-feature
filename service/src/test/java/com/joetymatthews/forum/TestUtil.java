@@ -98,21 +98,4 @@ public class TestUtil {
         assertThat(subDiscussions.size()).isEqualTo(1);
         assertThat(subDiscussions.get(0).getTitle()).isEqualTo("How are you?");
     }
-
-    public static void assertThread(Thread thread) {
-        assertThat(thread.getTitle()).isEqualTo("Post!");
-        assertThat(thread.getContent()).isEqualTo("<h1>Post</h1>");
-        assertThat(thread.getUserId()).isEqualTo("user");
-    }
-
-    public static ServerHttpRequest httpRequest() {
-        ServerHttpRequest request = mock(ServerHttpRequest.class);
-        when(request.getURI()).thenReturn(URI.create("http://localhost:8080"));
-        return request;
-    }
-
-    public static void assertSubDiscussions(List<SubDiscussion> subDiscussions) {
-        assertThat(subDiscussions.size()).isEqualTo(1);
-        assertThat(subDiscussions.get(0).getTitle()).isEqualTo("How are you?");
-    }
 }

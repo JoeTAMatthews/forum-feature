@@ -1,2 +1,2 @@
-rootProject.name = "service"
+rootProject.name = "forum-service"
 
