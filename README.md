@@ -9,3 +9,7 @@ A forum built from scratch, in Java &amp; React
 * React
 * NextJS
 * Tailwind
+
+## Deployment
+
+- Currently deployed on GCP Cloud run.
